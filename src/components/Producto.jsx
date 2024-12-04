@@ -1,5 +1,15 @@
+import { useEffect } from "react"
+import Campo from "./Campo"
+import useProducto from "../hooks/useProducto"
 
 const Producto = () => {
+    const { products, getProductos } = useProducto()
+    
+    useEffect(() => {
+        getProductos()
+        console.log(products)
+    }, [])
+
     return (
         <div className="container-fluid">
             <div className="row mt-3">
@@ -40,19 +50,10 @@ const Producto = () => {
                             <button className="btn-close" data-bs-dismiss="modal" aria-label="close" />
                         </div>
                         <div className="modal-body">
-                            <input type='hidden' id='id' />
-                            <div className="input-group mb-3">
-                                <span className="input-group-text"><i className="fa-solid fa-gift" /></span>
-                                <input type='text' id='title' className="form-control" placeholder="Nombre del producto" />
-                            </div>
-                            <div className="input-group mb-3">
-                                <span className="input-group-text"><i className="fa-solid fa-comment" /></span>
-                                <input type='text' id='description' className="form-control" placeholder="Descripción" />
-                            </div>
-                            <div className="input-group mb-3">
-                                <span className="input-group-text"><i className="fa-solid fa-dollar-sign" /></span>
-                                <input type='number' id='price' className="form-control" placeholder="Precio" />
-                            </div>
+                            <input type="hidden" id='id' />
+                            <Campo idCampo='title' iconName='fa-solid fa-gift' placeholderName="Nombre del producto" tipoCampo="text" />
+                            <Campo idCampo='description' iconName='fa-solid fa-comment' placeholderName="Descripción" tipoCampo="text" />
+                            <Campo idCampo='price' iconName='fa-solid fa-dollar-sign' placeholderName="Precio" tipoCampo="number" />
                         </div>
                         <div className="modal-footer">
                             <button className="btn btn-success">
